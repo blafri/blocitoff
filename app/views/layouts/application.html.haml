@@ -2,9 +2,25 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1"}
     %title Blocitoff
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
-  %body
+  %body{class: page_controller_class}
+    - if flash[:notice]
+      .alert.alert-success.text-center
+        %button.close{type: "button", data: {dismiss: 'alert'}} &times;
+        = flash[:notice]
+        
+    - elsif flash[:error]
+      .alert.alert-danger.text-center
+        %button.close{type: "button", data: {dismiss: 'alert'}} &times;
+        = flash[:error]
+        
+    - elsif flash[:alert]
+      .alert.alert-warning.text-center
+        %button.close{type: "button", data: {dismiss: 'alert'}} &times;
+        =flash[:alert]
+    
     = yield
