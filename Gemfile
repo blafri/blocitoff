@@ -36,6 +36,12 @@ gem 'bootstrap-sass', '~> 3.3.4'
 # use haml as default template language
 gem "haml-rails", "~> 0.9"
 
+# use the puma web server
+gem "puma"
+
+# use this gem to tumeout long running processes
+gem "rack-timeout"
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
