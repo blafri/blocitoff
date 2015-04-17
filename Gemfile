@@ -70,6 +70,9 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.5.0'
   
   gem 'pry'
+  
+  #use thoughtbots shoulda matchers to help write easy consise tests
+  gem 'shoulda-matchers', '~> 2.8'
 end
 
 group :production do
