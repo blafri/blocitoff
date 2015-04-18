@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users
+  authenticated :user do
+    root :to => "dashboard#index", :as => "authenticated_root"
+  end
+  
   root 'welcome#index'
+  
+  devise_for :users
+  
   
   
   # The priority is based upon order of creation: first created -> highest priority.

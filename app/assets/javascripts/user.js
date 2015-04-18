@@ -37,7 +37,37 @@ $( document ).ready(function() {
     }
 
     if ( !formGood ) {
-      setErrorMsgsOnForm('#signup-form-messages', errorArray)
+      setErrorMsgsOnForm('#form-messages', errorArray)
+    }
+    
+    return formGood;
+  });
+});
+
+$( document ).ready( function() {
+  $( '.controller-sessions #new_user' ).submit(function() {
+    var formGood = true;
+    var errorArray = [];
+    
+    //reset all errors on the form
+    resetErrorsOnFormItems('#new_user')
+    
+    // An email must be formated properly
+    if ( !isValidEmailAddress($('#user_email').val()) ) {
+      setErrorOnFormItems( '#user_email' );
+      formGood = false;
+      errorArray.push('Please enter a valid email address.')
+    }
+    
+    // A password must be present
+    if ( !$( '#user_password' ).val() ) {
+      setErrorOnFormItems( '#user_password' );
+      formGood = false;
+      errorArray.push('A password must be present')
+    }
+    
+    if ( !formGood ) {
+      setErrorMsgsOnForm('#form-messages', errorArray)
     }
     
     return formGood;
