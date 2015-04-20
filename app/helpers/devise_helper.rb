@@ -1,8 +1,4 @@
 module DeviseHelper
-  def devise_signup_error!
-    flash.now[:error] = "There was an error signing up!"
-  end
-  
   def devise_error_messages!
     return "" if resource.errors.empty?
 

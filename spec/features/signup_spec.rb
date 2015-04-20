@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'pry'
+
 feature 'Sign UP' do
   let(:first_name) { 'John' }
   let(:last_name) { 'Doe' }
@@ -12,9 +12,9 @@ feature 'Sign UP' do
   end
   
   context "with vaild information" do
+    before { ActionMailer::Base.deliveries = [] }
+    
     scenario "Successfully signs up and email is sent" do
-      #test that there are no emails to send in the queue
-      expect(ActionMailer::Base.deliveries.count).to eq(0)
       
       fill_out_signup_form(
         'user_first_name' => first_name,
@@ -97,16 +97,16 @@ feature 'Sign UP' do
       expect(page).to have_content("Email is invalid")
     end
   end
+end
   
-  private
-  
-  def fill_out_signup_form(fields = {})
-    visit(new_user_registration_path)
-    
-    fields.each_pair do |key, value|
-      fill_in key, with: value
-    end
-    
-    click_on "Sign Up"
+private
+
+def fill_out_signup_form(fields = {})
+  visit(new_user_registration_path)
+
+  fields.each_pair do |key, value|
+    fill_in key, with: value
   end
+
+  click_on "Sign Up"
 end

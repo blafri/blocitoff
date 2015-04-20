@@ -1,8 +1,16 @@
 // Place all the styles related to the user controller here.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 body.controller-registrations-view-new,
-body.controller-registrations-view-create {
+body.controller-registrations-view-create,
+body.controller-sessions,
+body.controller-passwords,
+body.controller-confirmations {
   background-color: $brand-primary;
+  
+  .main-logo {
+    @include center-block();
+    padding: 25px 0 15px;
+  }
   
   .signup-extra-links {
     color: #FFF;
@@ -21,7 +29,9 @@ body.controller-registrations-view-create {
     }
   }
   
-  #sign-up-form {
+  #sign-up-form,
+  #new_user,
+  #edit_user {
     background-color: #FFF;
     padding: 5px 40px 20px;
     
@@ -48,12 +58,18 @@ body.controller-registrations-view-create {
 
 @media (min-width: 551px) {
   body.controller-registrations-view-new,
-  body.controller-registrations-view-create {
+  body.controller-registrations-view-create,
+  body.controller-sessions,
+  body.controller-passwords,
+  body.controller-confirmations {
     
-    #sign-up-form {
+    #sign-up-form,
+    #new_user,
+    #edit_user {
       @include center-block();
       max-width: 400px;
       border-radius: 5px;
+      padding-bottom: 35px;
     }
   }
 }
