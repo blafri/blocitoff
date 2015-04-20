@@ -1,0 +1,16 @@
+- flash.now[:error] = ("There was an error please see below") if devise_error_messages?
+.container-fluid
+  .row
+    = image_tag("blocitoff-black.png", class: 'main-logo')
+    = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+      %h2.text-center Resend confirmation instructions
+      %p.alert.alert-info
+        Didn't receive your email confirmation instructions? Enter your email address below and we will resend the confirmation link to you email address.
+      #form-messages
+        = devise_error_messages!
+      = form_group_tag(resource.errors[:email]) do
+        = f.email_field :email, placeholder: 'Email Address', class: 'form-control'
+      .actions
+        = f.submit "Resend confirmation instructions", class: 'btn btn-success btn-block'
+    .signup-extra-links.text-center
+      = render "devise/shared/links"

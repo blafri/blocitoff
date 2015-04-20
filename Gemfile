@@ -39,8 +39,13 @@ gem "haml-rails", "~> 0.9"
 # use the puma web server
 gem "puma"
 
-# use this gem to tumeout long running processes
+# use this gem to timeout long running processes
 gem "rack-timeout"
+
+#use devise for authentication
+gem "devise", "~> 3.4.0"
+
+gem 'figaro', '~> 1.1.0'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
@@ -63,6 +68,11 @@ group :development, :test do
   
   #use factory girl
   gem 'factory_girl_rails', '~> 4.5.0'
+  
+  gem 'pry'
+  
+  #use thoughtbots shoulda matchers to help write easy consise tests
+  gem 'shoulda-matchers', '~> 2.8'
 end
 
 group :production do

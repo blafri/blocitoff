@@ -1,0 +1,17 @@
+- flash.now[:error] = ("There was an error please see below") if devise_error_messages?
+.container-fluid
+  .row
+    = image_tag("blocitoff-black.png", class: 'main-logo')
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+      %h2.text-center Change your password
+      #form-messages
+        = devise_error_messages!
+      = f.hidden_field :reset_password_token
+      = form_group_tag(resource.errors[:password]) do
+        = f.password_field :password, autocomplete: "off", placeholder: 'Password', class: 'form-control'
+      = form_group_tag(resource.errors[:password_confirmation]) do
+        = f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Confirm Password', class: 'form-control'
+      .actions
+        = f.submit "Change my password", class: 'btn btn-success btn-block'
+    .signup-extra-links.text-center
+      = render "devise/shared/links"
