@@ -62,7 +62,10 @@ feature "Sign out" do
       'user_password' => password
     )
     
-    click_on('Sign Out')
+    within("nav") do
+      click_on('Sign Out')
+    end
+    
     expect(page).to have_content('landing page')
   end
 end

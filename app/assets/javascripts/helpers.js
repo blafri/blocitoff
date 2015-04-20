@@ -31,3 +31,12 @@ function setErrorMsgsOnForm(msgContainer, errors) {
   
   $( msgContainer ).append( html );
 }
+
+// Close the flash messages after 5 seconds
+$( document ).ready( function() {
+  if ( $( '#flash-notice' ).length ) {
+    window.setTimeout(function() {
+      $( '#flash-notice' ).alert('close');
+    }, 5000);
+  }
+});

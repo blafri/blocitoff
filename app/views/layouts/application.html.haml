@@ -9,17 +9,17 @@
     = csrf_meta_tags
   %body{class: page_controller_class}
     - if flash[:notice]
-      .alert.alert-success.text-center
+      #flash-notice.alert.alert-success.text-center.fade.in
         %button.close{type: "button", data: {dismiss: 'alert'}} &times;
         = flash[:notice]
         
     - elsif flash[:error]
-      .alert.alert-danger.text-center
+      #flash-error.alert.alert-danger.text-center.fade.in
         %button.close{type: "button", data: {dismiss: 'alert'}} &times;
         = flash[:error]
         
     - elsif flash[:alert]
-      .alert.alert-warning.text-center
+      #flash-alert.alert.alert-warning.text-center.fade.in
         %button.close{type: "button", data: {dismiss: 'alert'}} &times;
         =flash[:alert]
     

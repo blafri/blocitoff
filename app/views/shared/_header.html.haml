@@ -1,0 +1,23 @@
+%header
+  %nav
+    .container
+      .row
+        .navbar-header
+          %button{type: 'button', class: 'navbar-toggle collapsed', data: {toggle: "collapse", target: "#bloccitoff-navbar-collapse-1"}}
+            %span.sr-only Toggle Navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          .navbar-brand
+            = image_tag("blocitoff-black-small.png", class: 'main-logo', alt: 'Logo')
+        .collapse.navbar-collapse#bloccitoff-navbar-collapse-1
+          %ul.nav.navbar-nav.navbar-right
+            %li
+              = link_to_with_icon root_path, {class: is_link_active(root_path)},
+                text: 'Dashboard', icon_name: 'check', tag_class: 'nav-icons'
+            %li
+              = link_to_with_icon edit_user_registration_path, {class: is_link_active(edit_user_registration_path)},
+                text: 'Account Settings', icon_name: 'wrench', tag_class: 'nav-icons'
+            %li
+              = link_to_with_icon destroy_user_session_path, {method: :delete, class: is_link_active(destroy_user_session_path)},
+                text: 'Sign Out', icon_name: 'log-out', tag_class: 'nav-icons'
