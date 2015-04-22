@@ -47,6 +47,10 @@ gem "devise", "~> 3.4.0"
 
 gem 'figaro', '~> 1.1.0'
 
+# Timezone gems
+gem 'tzinfo'
+gem 'tzinfo-data'
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'

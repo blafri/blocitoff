@@ -1,0 +1,68 @@
+= render 'shared/header'
+.container
+  %h1 Account Settings
+
+  .panel.panel-default
+    .panel-heading
+      %h2.panel-title Profile Settings
+    .panel-body
+      = form_for @user, url: user_path, html: { class: 'form-horizontal' } do |f|
+        #form-messages
+          = display_form_errors!(@user)
+
+        = form_group_tag(@user.errors[:first_name], false) do
+          = f.label :first_name, class: 'col-sm-3 control-label'
+          .col-sm-5
+            = f.text_field :first_name, class: 'form-control'
+
+        = form_group_tag(@user.errors[:last_name], false) do
+          = f.label :last_name, class: 'col-sm-3 control-label'
+          .col-sm-5
+            = f.text_field :last_name, class: 'form-control'
+
+        = form_group_tag(@user.errors[:email], false) do
+          = f.label :email, class: 'col-sm-3 control-label'
+          .col-sm-5
+            = f.email_field :email, class: 'form-control'
+
+        .form-group
+          = f.label :time_zone_id, class: 'col-sm-3 control-label'
+          .col-sm-5
+            = f.select :time_zone_id, options_for_timezone, {}, class: 'form-control'
+        
+        .form-group
+          %label.col-sm-3.control-label{for: 'password-reset-button'} Reset Password
+          .col-sm-5
+            = link_to "Send Password Reset Email", user_path, method: :post, id: 'password-reset-button', class: 'btn btn-info'
+
+        .form-group
+          .col-sm-offset-3.col-sm-5
+            = f.submit "Update Profile", class: 'btn btn-success'
+  
+  .panel.panel-default
+    .panel-heading
+      %h2.panel-title Email Settings
+    .panel-body
+      = form_for @user, url: user_path, html: { class: 'form-horizontal' } do |f|
+        .form-group
+          %label#email-settings-label.col-sm-3.control-label{for: 'user_allow_email_reminders'} Task Reminder Settings
+          .col-sm-5#email-settings-section
+            = f.label :allow_email_reminders do
+              = f.check_box :allow_email_reminders, id: 'allow-email-checkbox'
+              Allow email reminders for tasks to be sent
+            <br>
+
+            Email reminders will be sent #{f.select :email_reminders_days, options_for_email_reminder_days, {}, id: 'email-days-select', class: 'form-control'} days before tasks expire
+        
+        .form-group
+          .col-sm-offset-3.col-sm-5
+            = f.submit "Update Email Settings", class: 'btn btn-success'
+
+  .panel.panel-default
+    .panel-heading
+      %h2.panel-title Cancel Account
+    .panel-body
+      .row
+        %label.col-sm-3.control-label.text-right#cancel-account-label{for: 'cancel-account-link'} Cancel Your Account
+        .col-sm-5
+          = link_to "Click Here to Cancel", users_path, data: { confirm: "Are you sure?" }, method: :delete, id: 'cancel-account-link', class: 'btn btn-danger'
