@@ -32,6 +32,15 @@ feature "Sign In" do
       expect(page).to have_content('This will be the users dashboard page')
     end
     
+    scenario "alert should be shown about no configured timezone when user signs in for first time" do
+      fill_out_signin_form(
+        'user_email' => email,
+        'user_password' => password
+      )
+      
+      expect(page).to have_content('You have not configured a time zone. Please go to account settings and update your profile.')
+    end
+    
   end
   
   context "with invalid credentials" do

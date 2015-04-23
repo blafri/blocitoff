@@ -13,12 +13,12 @@
         %button.close{type: "button", data: {dismiss: 'alert'}} &times;
         = flash[:notice]
         
-    - elsif flash[:error]
+    - if flash[:error]
       #flash-error.alert.alert-danger.text-center.fade.in
         %button.close{type: "button", data: {dismiss: 'alert'}} &times;
         = flash[:error]
         
-    - elsif flash[:alert]
+    - if flash[:alert]
       #flash-alert.alert.alert-warning.text-center.fade.in
         %button.close{type: "button", data: {dismiss: 'alert'}} &times;
         =flash[:alert]
