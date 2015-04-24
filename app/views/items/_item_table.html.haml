@@ -1,0 +1,16 @@
+%table.table
+  %thead
+    %tr
+      %th Item
+      %th Days Left
+      %th Complete
+  %tbody
+    - if items.empty?
+      %tr
+        %td{colspan: 3} Your TODO list is empty. Congratulations.
+    - else
+      - items.each do |item|
+        %tr
+          %td #{item.name}
+          %td 1
+          %td Finished

@@ -1,0 +1,8 @@
+.row
+  .col-sm-6.col-sm-offset-6
+    = form_for [user, item] do |f|
+      .form-group#new-form-item-name-group
+        = f.text_field :name, placeholder: 'Add New Item to List', class: 'form-control'
+
+      .form-group
+        = f.submit "Create Item", class: 'btn btn-success btn-block'

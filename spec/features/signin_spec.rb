@@ -19,7 +19,8 @@ feature "Sign In" do
       )
 
       expect(current_path).to eq(root_path)
-      expect(page).to have_content('This will be the users dashboard page')
+      expect(page).to have_content('Dashboard')
+      expect(page).to have_field('item_name')
     end
     
     scenario "root page should be users dashboard" do
@@ -29,7 +30,8 @@ feature "Sign In" do
       )
       
       visit(root_path)
-      expect(page).to have_content('This will be the users dashboard page')
+      expect(page).to have_content('Dashboard')
+      expect(page).to have_field('item_name')
     end
     
     scenario "alert should be shown about no configured timezone when user signs in for first time" do

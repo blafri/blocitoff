@@ -51,6 +51,9 @@ gem 'figaro', '~> 1.1.0'
 gem 'tzinfo'
 gem 'tzinfo-data'
 
+# Authorization Gem
+gem 'pundit', '~> 1.0'
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'

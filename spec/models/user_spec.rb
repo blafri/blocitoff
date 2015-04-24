@@ -15,4 +15,12 @@ RSpec.describe User, type: :model do
     it { should validate_length_of(:password).is_at_least(8) }
     it { should belong_to(:time_zone) }
   end
+  
+  it "#full_name returns users first and last name combined" do
+    user = build(:user, first_name: 'rich', last_name: 'froning')
+    expect(user.full_name).to eq('Rich Froning')
+    
+    user = build(:user, first_name: 'Dwayne', last_name: 'de montbrun')
+    expect(user.full_name).to eq('Dwayne De Montbrun')
+  end
 end

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # leaving out edit and update as those are implemented in the users controller
   devise_for :users, controllers: {registrations: 'users'}
   
+  
   # Route for user to generate a reset password email
   # For security I have disallowed users from changing their password
   # directly on the profile page. They must click this link which will send them
@@ -17,5 +18,9 @@ Rails.application.routes.draw do
   # password, they must also have access to the users email address.
   devise_scope :user do
     post 'users/password/reset', to: 'users#password_reset', as: :reset_user_password
+  end
+  
+  resources :users, only: [] do
+    resources :items, only: [:create]
   end
 end

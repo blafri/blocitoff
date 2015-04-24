@@ -1,0 +1,14 @@
+@media (min-width: $screen-sm-min) {
+  #new_item .form-group {
+    float: left;
+    margin-bottom: 0;
+  }
+   
+  #new_item #new-form-item-name-group {
+    margin-right: 5px;
+  }
+  
+  form#new_item {
+    float: right;
+  }
+}

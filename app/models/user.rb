@@ -8,4 +8,9 @@ class User < ActiveRecord::Base
   validates :last_name,  presence: true
   
   belongs_to :time_zone
+  has_many :items, dependent: :destroy
+  
+  def full_name
+    (first_name + ' ' + last_name).titleize
+  end
 end
