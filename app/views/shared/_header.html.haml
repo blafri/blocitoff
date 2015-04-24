@@ -16,7 +16,7 @@
               = link_to_with_icon root_path, {class: is_link_active(root_path)},
                 text: 'Dashboard', icon_name: 'check', tag_class: 'nav-icons'
             %li
-              = link_to_with_icon edit_user_path, {class: is_link_active(edit_user_path)},
+              = link_to_with_icon edit_user_registration_path, {class: is_link_active(edit_user_registration_path)},
                 text: 'Account Settings', icon_name: 'wrench', tag_class: 'nav-icons'
             %li
               = link_to_with_icon destroy_user_session_path, {method: :delete, class: is_link_active(destroy_user_session_path)},

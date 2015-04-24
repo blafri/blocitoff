@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < Devise::RegistrationsController
   before_action :authenticate_user!
   
   def edit
@@ -19,17 +19,21 @@ class UsersController < ApplicationController
     
     if @user.save
       flash[:notice] = "Account settings updated successfully.#{extra_info}"
-      redirect_to edit_user_path
+      redirect_to edit_user_registration_path
     else
-      flash[:error] = "There was a problem updating your account"
+      flash.now[:error] = "There was a problem updating your account"
       render :edit
     end
   end
   
-  def reset_password
+  def password_reset
     current_user.send_reset_password_instructions
-    flash[:notice] = "A password reset email has been sent to \"#{current_user.email}\". Please follow the instruction in the email to change your password"
-    redirect_to edit_user_path
+    
+    if !successfully_sent?(current_user)
+      flash[:error] = "There was a prolem sending your reset password email. Please try again."
+    end
+      
+    redirect_to edit_user_registration_path
   end
     
   private

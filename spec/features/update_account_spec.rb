@@ -7,13 +7,13 @@ feature "Update account" do
   before do
     create(:user)
     sign_user_in
-    visit edit_user_path
+    visit edit_user_registration_path
   end
   
   scenario "cancel account link deletes the users account" do
     click_on 'Click Here to Cancel'
     
-    expect(page).to have_content('Bye! Your account has been successfully cancelled')
+    expect(page).to have_content('Your account was cancel successfully')
     expect(User.find_by(email: email)).to eq(nil)
   end
   
@@ -38,7 +38,7 @@ feature "Update account" do
     create :time_zone
     create :time_zone
 
-    visit edit_user_path
+    visit edit_user_registration_path
     
     select tz.description, from: 'user_time_zone_id'
     click_button "Update Profile"
@@ -89,7 +89,7 @@ feature "Update account" do
 
     click_on "Send Password Reset Email"
     
-    expect(page).to have_content("A password reset email has been sent to \"#{email}\". Please follow the instruction in the email to change your password")
+    expect(page).to have_content("A password reset email has been sent to your email address. Please follow the instruction in the email to change your password")
     expect(ActionMailer::Base.deliveries.count).to eq(1)
     expect(ActionMailer::Base.deliveries[0].to.include?(email)).to eq(true)
   end

@@ -6,7 +6,7 @@
     .panel-heading
       %h2.panel-title Profile Settings
     .panel-body
-      = form_for @user, url: user_path, html: { class: 'form-horizontal' } do |f|
+      = form_for @user, url: user_registration_path, html: { class: 'form-horizontal' } do |f|
         #form-messages
           = display_form_errors!(@user)
 
@@ -33,7 +33,7 @@
         .form-group
           %label.col-sm-3.control-label{for: 'password-reset-button'} Reset Password
           .col-sm-5
-            = link_to "Send Password Reset Email", user_path, method: :post, id: 'password-reset-button', class: 'btn btn-info'
+            = link_to "Send Password Reset Email",reset_user_password_path, method: :post, id: 'password-reset-button', class: 'btn btn-info'
 
         .form-group
           .col-sm-offset-3.col-sm-5
@@ -43,7 +43,7 @@
     .panel-heading
       %h2.panel-title Email Settings
     .panel-body
-      = form_for @user, url: user_path, html: { class: 'form-horizontal' } do |f|
+      = form_for @user, url: user_registration_path, html: { class: 'form-horizontal' } do |f|
         .form-group
           %label#email-settings-label.col-sm-3.control-label{for: 'user_allow_email_reminders'} Task Reminder Settings
           .col-sm-5#email-settings-section
@@ -65,4 +65,4 @@
       .row
         %label.col-sm-3.control-label.text-right#cancel-account-label{for: 'cancel-account-link'} Cancel Your Account
         .col-sm-5
-          = link_to "Click Here to Cancel", users_path, data: { confirm: "Are you sure?" }, method: :delete, id: 'cancel-account-link', class: 'btn btn-danger'
+          = link_to "Click Here to Cancel", user_registration_path, data: { confirm: "Are you sure?" }, method: :delete, id: 'cancel-account-link', class: 'btn btn-danger'

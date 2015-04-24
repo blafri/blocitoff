@@ -4,20 +4,18 @@ Rails.application.routes.draw do
   end
   
   root 'welcome#index'
-  resource :user, only: [:edit, :update]
-  
-  # Route for users to send reset password email from their 
-  # account settings page. They need to do this to change
-  # their password
-  post '/user', to: 'users#reset_password'
   
   # Devise routes we skip the registration routes and them recreate them manually
   # leaving out edit and update as those are implemented in the users controller
-  devise_for :users, skip: :registrations
+  devise_for :users, controllers: {registrations: 'users'}
+  
+  # Route for user to generate a reset password email
+  # For security I have disallowed users from changing their password
+  # directly on the profile page. They must click this link which will send them
+  # an email with a password reset token. This is to increase security so that if
+  # a user left their session up no one can just go to account page and change their 
+  # password, they must also have access to the users email address.
   devise_scope :user do
-    get '/users/cancel', to: 'devise/registrations#cancel', as: :cancel_user_registration
-    post '/users', to: 'devise/registrations#create', as: :user_registration
-    get '/users/sign_up', to: 'devise/registrations#new', as: :new_user_registration
-    delete '/users', to: 'devise/registrations#destroy'
+    post 'users/password/reset', to: 'users#password_reset', as: :reset_user_password
   end
 end
