@@ -6,11 +6,11 @@ module DeviseHelper
 
     html = <<-START
 <div class='alert alert-danger text-center'>
-        <ul class='list-unstyled'>
-          #{messages}
-        </ul>
-      </div>
-    START
+  <ul class='list-unstyled'>
+    #{messages}
+  </ul>
+</div>
+START
 
     html.html_safe
   end

@@ -5,62 +5,17 @@ Rails.application.routes.draw do
   
   root 'welcome#index'
   
-  devise_for :users
+  # Devise routes we skip the registration routes and them recreate them manually
+  # leaving out edit and update as those are implemented in the users controller
+  devise_for :users, controllers: {registrations: 'users'}
   
-  
-  
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  # Route for user to generate a reset password email
+  # For security I have disallowed users from changing their password
+  # directly on the profile page. They must click this link which will send them
+  # an email with a password reset token. This is to increase security so that if
+  # a user left their session up no one can just go to account page and change their 
+  # password, they must also have access to the users email address.
+  devise_scope :user do
+    post 'users/password/reset', to: 'users#password_reset', as: :reset_user_password
+  end
 end

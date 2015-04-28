@@ -1,3 +1,20 @@
+// Account settings page to disable email select box
+// if checkbox is unchecked
+$( document ).ready(function() {
+  var updateEmailSelectBox = function() {
+    if ( $('#allow-email-checkbox').is(':checked') ) {
+      $( '#email-days-select' ).prop('disabled', false);
+    } else {
+      $( '#email-days-select' ).prop('disabled', 'disabled');
+    }
+  };
+  
+  // Check if allow-email-checkbox is ticked or not on page load
+  // and then track changes after
+  updateEmailSelectBox();
+  $( '#allow-email-checkbox' ).change(updateEmailSelectBox);
+});
+
 // For the SignUp page do field validation
 // before submitting
 $( document ).ready(function() {

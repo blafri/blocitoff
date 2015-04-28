@@ -1,7 +1,38 @@
 // Place all the styles related to the user controller here.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-body.controller-registrations-view-new,
-body.controller-registrations-view-create,
+
+
+/********************************************************
+ * Styles for account settings page
+ */
+#page-title {
+  margin: 25px 0 30px 0;
+}
+
+#email-settings-label {
+  padding-top: 0;
+}
+
+#email-settings-section {
+  label {
+    font-weight: normal;
+  }
+}
+
+#cancel-account-label {
+  padding-top: 7px;
+}
+
+#email-days-select {
+  display: inline-block;
+  width: auto;
+}
+
+/********************************************************
+ * Styles for signup and login page
+ */
+body.controller-users-view-new,
+body.controller-users-view-create,
 body.controller-sessions,
 body.controller-passwords,
 body.controller-confirmations {
@@ -57,8 +88,8 @@ body.controller-confirmations {
 }
 
 @media (min-width: 551px) {
-  body.controller-registrations-view-new,
-  body.controller-registrations-view-create,
+  body.controller-users-view-new,
+  body.controller-users-view-create,
   body.controller-sessions,
   body.controller-passwords,
   body.controller-confirmations {
