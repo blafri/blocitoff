@@ -80,6 +80,8 @@ group :development, :test do
   
   #use thoughtbots shoulda matchers to help write easy consise tests
   gem 'shoulda-matchers', '~> 2.8'
+  
+  gem 'faker'
 end
 
 group :production do
