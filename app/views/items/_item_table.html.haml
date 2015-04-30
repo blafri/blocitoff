@@ -10,7 +10,8 @@
         %td{colspan: 3} Your TODO list is empty. Congratulations.
     - else
       - items.each do |item|
-        %tr
+        %tr{ id: "item-id-#{item.id}" }
           %td #{item.name}
           %td 1
-          %td Finished
+          %td
+            = link_to "", [user, item], method: :delete, class: 'glyphicon glyphicon-ok', id: "delete-item-id-#{item.id}", remote: true
