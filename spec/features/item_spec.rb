@@ -18,6 +18,14 @@ feature "Delete a todo item" do
     expect(page).to have_content('Your TODO list is empty. Congratulations.')
     expect(Item.count).to eq(0)
   end
+  
+  scenario "is successfull with JS", js: true do
+    expect(page).to have_content(todo.name)
+    click_on "delete-item-id-#{todo.id}"
+    expect(page).to have_content('The task was deleted successfully')
+    expect(page).not_to have_content(todo.name)
+    expect(Item.count).to eq(0)
+  end
 end
 
 feature "Create a new todo item" do
