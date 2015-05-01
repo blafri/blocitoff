@@ -7,5 +7,9 @@ class DashboardController < ApplicationController
     if current_user.time_zone == nil
       flash.now[:alert] = "You have not configured a time zone. Please go to account settings and update your profile."
     end
+    
+    @user = current_user
+    @item = Item.new
+    @items = @user.items
   end
 end
