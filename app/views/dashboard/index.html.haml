@@ -7,4 +7,4 @@
       .panel-heading ToDo List
       .panel-body
         = render partial: "items/form", locals: {user: @user, item: @item}  
-      = render partial: "items/item_table", locals: {items: @items}
+      = render partial: "items/item_table", locals: {user: @user, items: @items}

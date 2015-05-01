@@ -14,6 +14,25 @@ class ItemsController < ApplicationController
     end
   end
   
+  def destroy
+    @item = Item.find(params[:id])
+    authorize @item
+    @item.destroy
+      
+    respond_to do |format|
+      format.html do
+        if @item.destroyed?
+          flash[:notice] = 'The task was deleted successfully.'
+        else
+          flash[:error] = 'There was a problem deleting the task. Please try again.'
+        end
+        redirect_to root_path
+      end
+      
+      format.js
+    end
+  end
+  
   private
   
   def item_params

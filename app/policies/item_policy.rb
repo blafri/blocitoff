@@ -6,4 +6,8 @@ class ItemPolicy < ApplicationPolicy
   def new?
     false
   end
+  
+  def destroy?
+    user.present? && record.user == user
+  end
 end

@@ -82,6 +82,8 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 2.8'
   
   gem 'faker'
+  gem 'poltergeist'
+  gem 'database_cleaner'
 end
 
 group :production do
