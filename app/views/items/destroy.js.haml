@@ -1,0 +1,21 @@
+- if @item.destroyed?
+  :plain
+    var html = "<div id='item-#{@item.id}-msg' class='alert alert-success text-center fade in flash-js-msg'>" + 
+      "<button type='button' class='close' data-dismiss='alert'>&times</button>" + 
+      "The task was deleted successfully." +
+      "</div>";
+    
+    $( '#item_#{@item.id}' ).hide();
+    $( '#flash-messages' ).append(html).hide().fadeIn(600, function() {
+      window.setTimeout(function() {
+        $( "#item-#{@item.id}-msg" ).alert('close');
+      }, 5000);
+    });
+- else
+  :plain
+    var html = "<div class='alert alert-danger text-center flash-js-msg'>" + 
+      "<button type='button' class='close' data-dismiss='alert'>&times</button>" + 
+      "There was an error deleting your post. Please try again." +
+      "</div>";
+      
+    $( '#flash-messages' ).append(html).hide().fadeIn();
