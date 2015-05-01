@@ -5,10 +5,10 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'database_cleaner'
-require 'support/database_cleaner.rb'
+require 'support/database_cleaner'
 require 'capybara/rails'
 require 'shoulda/matchers'
-require 'support/factory_girl.rb'
+require 'support/factory_girl'
 require 'capybara/poltergeist'
 require 'support/poltergeist_setup'
 

@@ -5,7 +5,7 @@
       "The task was deleted successfully." +
       "</div>";
     
-    $( '#item-id-#{@item.id}' ).hide();
+    $( '#item_#{@item.id}' ).hide();
     $( '#flash-messages' ).append(html).hide().fadeIn(600, function() {
       window.setTimeout(function() {
         $( "#item-#{@item.id}-msg" ).alert('close');
