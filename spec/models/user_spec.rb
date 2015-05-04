@@ -23,4 +23,14 @@ RSpec.describe User, type: :model do
     user = build(:user, first_name: 'Dwayne', last_name: 'de montbrun')
     expect(user.full_name).to eq('Dwayne De Montbrun')
   end
+  
+  it "#configured_time_zone returns the users timezone if configured" do
+    user = build(:user_with_time_zone)
+    expect(user.configured_time_zone).to eq('America/La_Paz')
+  end
+  
+  it "#configured_time_zone returns UTC if time_zone was not configured" do
+    user = build(:user)
+    expect(user.configured_time_zone).to eq('Etc/UTC')
+  end
 end

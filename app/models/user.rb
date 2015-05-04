@@ -13,4 +13,12 @@ class User < ActiveRecord::Base
   def full_name
     (first_name + ' ' + last_name).titleize
   end
+  
+  def configured_time_zone
+    if time_zone
+      time_zone.name
+    else
+      'Etc/UTC'
+    end
+  end
 end
