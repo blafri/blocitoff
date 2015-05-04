@@ -18,7 +18,7 @@ $( document ).ready(function() {
 // For the SignUp page do field validation
 // before submitting
 $( document ).ready(function() {
-  $( '.controller-registrations #sign-up-form' ).submit(function() {
+  $( '.controller-users #sign-up-form' ).submit(function() {
     var formGood = true;
     var errorArray = [];
     

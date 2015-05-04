@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 ruby "2.2.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails', '~> 4.2.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -57,7 +57,7 @@ gem 'pundit', '~> 1.0'
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
-  
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
@@ -66,21 +66,21 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  
+
   # Use rspec for testing
   gem 'rspec-rails', '~> 3.0'
-  
+
   # Use Capybara
   gem 'capybara', '~> 2.4.0'
-  
+
   #use factory girl
   gem 'factory_girl_rails', '~> 4.5.0'
-  
+
   gem 'pry'
-  
+
   #use thoughtbots shoulda matchers to help write easy consise tests
   gem 'shoulda-matchers', '~> 2.8'
-  
+
   gem 'faker'
   gem 'poltergeist'
   gem 'database_cleaner'
