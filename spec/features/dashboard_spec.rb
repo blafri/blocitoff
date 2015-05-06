@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature "Dashboard" do
   let(:user) { create :user_with_time_zone }
-  let(:item) { create :item, user: user, created_at: 2.days.ago.in_time_zone(user.configured_time_zone) }
+  let(:item) { create :item_2_days_old, user: user }
   
   context 'user has items' do
     before do

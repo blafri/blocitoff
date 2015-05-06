@@ -15,6 +15,8 @@ puts "Database time_zones table seeded successfully"
 if Rails.env.development?
   require 'faker'
   
+  timezones = TimeZone.all
+  
   # Create Users
   9.times do
     name = Faker::Name.name.split(' ', 2)
@@ -22,7 +24,8 @@ if Rails.env.development?
       first_name: name.shift,
       last_name:  name.shift,
       email:      Faker::Internet.email,
-      password:   Faker::Lorem.characters(8)
+      password:   Faker::Lorem.characters(8),
+      time_zone:  timezones.sample
     )
     user.skip_confirmation!
     user.save!
@@ -33,7 +36,8 @@ if Rails.env.development?
     first_name: 'blayne',
     last_name:  'farinha',
     email:      'blayne.farinha@gmail.com',
-    password:   'C00lness'
+    password:   'C00lness',
+    time_zone:  TimeZone.find_by_name("America/La_Paz")
   )
   user.skip_confirmation!
   user.save!
@@ -41,11 +45,14 @@ if Rails.env.development?
   puts "#{users.count} users created"
   
   # Create Items
+  days_old = (0..8).to_a
   100.times do
-    Item.create!(
+    item = Item.new(
       user: users.sample,
       name: Faker::Lorem.sentence(3, true, 0)
     )
+    item.expires_at = (days_old.sample.days.ago.in_time_zone(item.user.configured_time_zone) + 7.days).beginning_of_day
+    item.save!
   end
   puts "#{Item.count} items created"
 end
