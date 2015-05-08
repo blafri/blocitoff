@@ -27,7 +27,7 @@ if Rails.env.development?
   user.save!
   
   user = User.new(
-    first_name: 'blayne',
+    first_name: 'arran',
     last_name:  'farinha',
     email:      'b_farinha1985@hotmail.com',
     password:   'C00lness',

@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   belongs_to :time_zone
   has_many :items, dependent: :destroy
   
-  scope :users_for_summary_email, -> {
+  scope :users_for_summary_email_at_6, -> {
     joins(:time_zone).
     where(allow_email_reminders: true).
     where(time_zones: {name: TimeZone.current_local_zone_hour_is(6)})
