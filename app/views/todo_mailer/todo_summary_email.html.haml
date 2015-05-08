@@ -1,0 +1,11 @@
+%h1 Hey #{@user.first_name}
+%h2 Here is a summary of emails that are expiring
+
+%table
+  %tr
+    %th Name
+    %th Days Left
+  = content_tag_for(:tr, @tasks) do |task|
+    %td= task.name
+    %td= time_left_in_words(task)
+%p To stop receiving these email check your account settings

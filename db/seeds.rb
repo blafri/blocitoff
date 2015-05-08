@@ -15,27 +15,21 @@ puts "Database time_zones table seeded successfully"
 if Rails.env.development?
   require 'faker'
   
-  timezones = TimeZone.all
-  
   # Create Users
-  9.times do
-    name = Faker::Name.name.split(' ', 2)
-    user = User.new(
-      first_name: name.shift,
-      last_name:  name.shift,
-      email:      Faker::Internet.email,
-      password:   Faker::Lorem.characters(8),
-      time_zone:  timezones.sample
-    )
-    user.skip_confirmation!
-    user.save!
-  end
-  
-  # Create a user I can login as
   user = User.new(
     first_name: 'blayne',
     last_name:  'farinha',
     email:      'blayne.farinha@gmail.com',
+    password:   'C00lness',
+    time_zone:  TimeZone.find_by_name("America/La_Paz")
+  )
+  user.skip_confirmation!
+  user.save!
+  
+  user = User.new(
+    first_name: 'blayne',
+    last_name:  'farinha',
+    email:      'b_farinha1985@hotmail.com',
     password:   'C00lness',
     time_zone:  TimeZone.find_by_name("America/La_Paz")
   )
