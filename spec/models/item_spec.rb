@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   let(:user) { create(:user_with_time_zone) }
   let(:two_day_old_item) { create(:item_2_days_old, user: user) }
-  let(:item_with_known_date) { create(:item, user: user, created_at: Time.new(2002, 10, 1, 12).in_time_zone(user.time_zone.name)) }
-  let(:ten_day_old_item) { create(:item, created_at: 10.days.ago) }
+  let(:ten_day_old_item) { create(:item_10_days_old, user: user) }
   
   context "validations" do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:user) }
+    it { should validate_presence_of(:expires_at) }
   end
   
   context "relationships" do
@@ -23,11 +23,17 @@ RSpec.describe Item, type: :model do
     expect(ten_day_old_item.days_left).to eq(0)
   end
   
-  it "#expiration_date returns the day the item will be deleted" do
-    expect(item_with_known_date.expiration_date).to eq(Time.new(2002, 10, 8))
+  it "#set_expiration_date sets the expiration date properly" do
+    item = user.items.build
+    item.set_expiration_date
+    expect(item.expires_at).not_to eq(nil)
   end
   
-  it "#created_at_with_time_zone returns the time the item was created using the configured time zone" do
-    expect(item_with_known_date.created_at_with_time_zone).to eq(Time.new(2002, 10, 1, 12).in_time_zone(user.time_zone.name))
+  it "scope expired_items correctly returns expired items" do
+    expect(Item.expired_items.count).to eq(0)
+    ten_day_old_item
+    expect(Item.expired_items.count).to eq(1)
+    two_day_old_item
+    expect(Item.expired_items.count).to eq(1)
   end
 end

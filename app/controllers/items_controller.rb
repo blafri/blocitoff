@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
     @user = current_user
     @item = @user.items.build(item_params)
     authorize @item
+    @item.set_expiration_date
     if @item.save
       flash[:notice] = "New item successfully added to list"
       redirect_to root_path
