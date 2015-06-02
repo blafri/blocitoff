@@ -7,6 +7,10 @@ FactoryGirl.define do
     allow_email_reminders true
     email_reminders_days 1
     confirmed_at Time.now
+    
+    factory :user_with_time_zone do
+      association :time_zone, factory: :trinidad_time_zone
+    end
   end
 
 end
