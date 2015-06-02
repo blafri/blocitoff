@@ -1,7 +1,7 @@
 module ItemsHelper
   def time_left_in_words(item)
     case item.days_left
-    when 1
+    when 0
       'Today'
     when 7
       '1 Week'
